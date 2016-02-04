@@ -56,10 +56,74 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
+        /*
+         * Modificada mas abajo para evitar que el usuario
+         * nos modifique el role (lo fuerzo a 'user')
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        */
+
+        $user = new User([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password'])
+        ]);
+        $user->role = 'user';
+        $user->remember_token = str_random(10);
+        $user->save();
+        return $user;
+
     }
+
+    /**
+     * Get the path to the login route.
+     *
+     * @return string
+     */
+    public function loginPath()
+    {
+        // return property_exists($this, 'loginPath') ? $this->loginPath : '/login';
+        return route('login');
+    }
+
+    public function redirectPath()
+    {
+        /*
+        if (property_exists($this, 'redirectPath')) {
+            return $this->redirectPath;
+        }
+
+        return property_exists($this, 'redirectTo') ? $this->redirectTo : '/';
+        */
+
+        return route('home');
+    }
+
+    /**
+     * Get the failed login message.
+     *
+     * @return string
+     */
+
+    /*
+     * No es necesario: cambiar/agregar en es/auth.php
+     * 'failed' => 'Estas credenciales no coinciden con nuestros registros',
+     */
+
+    /*
+     * se podria simplificar y hacerlo mas portable:
+     * return trans('validation.login');
+     */
+    /*
+    protected function getFailedLoginMessage()
+    {
+        return Lang::has('auth.failed')
+            ? Lang::get('auth.failed')
+            : 'These credentials do not match our records.';
+    }
+    */
+
 }

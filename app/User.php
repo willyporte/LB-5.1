@@ -30,6 +30,9 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $fillable = ['name', 'email', 'password'];
 
+    // no meter role! en asignamientos masivos!
+    // forzarlo por default a $user->role = 'user';
+
     /**
      * The attributes excluded from the model's JSON form.
      *
