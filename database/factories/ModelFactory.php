@@ -12,11 +12,16 @@
 */
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
+
+    $faker = Faker\Factory::create('it_IT');
+
     return [
         'name' => $faker->name,
-        'email' => $faker->email,
+        'email' => $faker->unique()->email,
+        'nickname' => $faker->unique()->word.$faker->randomNumber(2),
         'password' => bcrypt('secret'),
         'remember_token' => str_random(10),
         'role' => $faker->randomElement(['user','user','user','user','editor']),
+        'active' => true,
     ];
 });

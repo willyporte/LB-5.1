@@ -13,7 +13,7 @@ return array(
     |
     */
 
-    "login"            => 'Estas credenciales no coinciden con nuestros registros',
+    "login"            => 'Sus credenciales no coinciden con nuestros registros',
     "accepted"         => ":attribute debe ser aceptado.",
     "active_url"       => ":attribute no es una URL válida.",
     "after"            => ":attribute debe ser una fecha posterior a :date.",
@@ -105,6 +105,7 @@ return array(
     'attributes' => array(
         'name' => 'Nombre completo',
         'username' => 'Nombre de usuario',
+        'nickname' => 'Nickname',
         'email' => 'Correo electrónico',
         'password' => 'Contraseña',
         'password_confirmation' => 'Confirma tu contraseña'

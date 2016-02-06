@@ -22,6 +22,14 @@
                             </div>
 
                             <div class="form-group">
+                                <label class="col-md-4 control-label">@lang('validation.attributes.nickname')</label>
+
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="nickname" value="{{ old('nickname') }}">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label class="col-md-4 control-label">@lang('validation.attributes.email')</label>
 
                                 <div class="col-md-6">

@@ -106,9 +106,10 @@ return [
 
     'attributes' => [
         'email' => 'E-mail',
+        'nickaname' => 'User nickname',
         'password' => 'Password',
-        'password_confirmation' => 'Confirma tu password',
-        'name' => 'Nombre',
+        'password_confirmation' => 'Password Confirmation',
+        'name' => 'Name',
 
     ],
 

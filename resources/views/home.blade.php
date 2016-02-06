@@ -11,7 +11,7 @@
                         <h1>Laravel 5.1 Carajo!</h1>
 
                         @if (Auth::check())
-                            <h2>Bentornato {{ Auth::user()->name }}!</h2>
+                            <h2>Ciao {{ Auth::user()->name }}!</h2>
                         @else
                             <h2>Bienvenidos a nuestro sitio</h2>
                         @endif
