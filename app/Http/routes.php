@@ -39,6 +39,11 @@ Route::get('register', [
 ]);
 Route::post('register', 'Auth\AuthController@postRegister');
 
+Route::get('confirmation/{token}', [
+    'uses' => 'Auth\AuthController@getConfirmation',
+    'as'   => 'confirmation'
+]);
+
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
 Route::post('password/email', 'Auth\PasswordController@postEmail');

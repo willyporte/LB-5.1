@@ -9,7 +9,6 @@
                     <div class="panel-body">
 
                         @include('partials/errors')
-
                         @include('partials/success')
 
                         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">

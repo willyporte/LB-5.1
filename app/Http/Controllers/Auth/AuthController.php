@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -77,8 +79,15 @@ class AuthController extends Controller
             'password' => bcrypt($data['password'])
         ]);
         $user->role = 'user';
+        $user->registration_token = str_random(40);
         $user->remember_token = str_random(10);
         $user->save();
+
+        $url = route('confirmation', ['token' => $user->registration_token]);
+        // email to user sent
+        Mail::send('emails.registration',compact('user','url'), function($m) use ($user){
+           $m->to($user->email, $user->name)->subject('Activa tu cuenta!');
+        });
         return $user;
 
     }
@@ -142,7 +151,43 @@ class AuthController extends Controller
         return [
             'nickname' => $request->get('nickname'),
             'password' => $request->get('password'),
+            'registration_token' => null,
             'active' => true
         ];
     }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postRegister(Request $request)
+    {
+
+        $validator = $this->validator($request->all());
+
+        if ($validator->fails()) {
+            $this->throwValidationException(
+                $request, $validator
+            );
+        }
+
+        //Auth::login($this->create($request->all()));
+
+        $user = $this->create($request->all());
+        //return redirect($this->redirectPath());
+        return redirect()->route('login')->with('alert','Por favor confirma tu email: '.$user->email);
+
+    }
+
+    public function getConfirmation($token)
+    {
+        $user = User::where('registration_token', $token)->firstOrFail();
+        $user->registration_token = null;
+        $user->save();
+
+        return redirect()->route('login')->with('alert', 'E-mail confirmado, ahora puedes iniciar sesion');
+    }
+
 }
