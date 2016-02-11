@@ -4,23 +4,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-
                 @include('partials/success')
-
                 <div class="panel panel-default">
-                    <div class="panel-heading">Bienvenidos!</div>
+                    <div class="panel-heading">User Profile</div>
                     <div class="panel-body">
-                        <h1>Laravel 5.1 Carajo!</h1>
 
-                        @if (Auth::check())
-                            <h2>Ciao {{ Auth::user()->name }}!</h2>
-                        @else
-                            <h2>Bienvenidos a nuestro sitio</h2>
-                        @endif
+                        <ul>
+                            <li><a href="#">Cambia tu Profile</a></li>
+                            <li><a href="#">Cambia tu password</a></li>
+                        </ul>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+    @endsection

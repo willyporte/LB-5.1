@@ -51,3 +51,22 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+// only authenticated users
+Route::group(['middleware' => 'auth'], function(){
+
+    // only authenticated and verified users
+    Route::group(['middleware' => 'verified'], function(){
+        Route::get('publish', function(){
+            return view('users.publish');
+        });
+
+        Route::post('publish', function(){
+            return Request::all();
+        });
+    });
+
+    Route::get('account', function(){
+        return view('users.account');
+    });
+});

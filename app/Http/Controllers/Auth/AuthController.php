@@ -35,7 +35,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => ['getLogout','getConfirmation']]);
     }
 
     /**
@@ -151,7 +151,11 @@ class AuthController extends Controller
         return [
             'nickname' => $request->get('nickname'),
             'password' => $request->get('password'),
-            'registration_token' => null,
+            //'registration_token' => null,
+            /*
+             * permito accesso limitado a los "no verificados" y con el middleware IsVerified
+             * limito las areas de acceso
+             */
             'active' => true
         ];
     }
@@ -183,6 +187,7 @@ class AuthController extends Controller
 
     public function getConfirmation($token)
     {
+
         $user = User::where('registration_token', $token)->firstOrFail();
         $user->registration_token = null;
         $user->save();
