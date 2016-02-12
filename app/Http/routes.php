@@ -70,3 +70,17 @@ Route::group(['middleware' => 'auth'], function(){
         return view('users.account');
     });
 });
+
+// los no conectados pueden ir a la ruta (404 desde el middleware)
+Route::group(['middleware' => 'role:admin'], function(){
+    Route::get('admin/settings', function(){
+        return view('admin.settings');
+    });
+});
+
+// los no conectados no puede ir a la ruta (aparece login)
+Route::group(['middleware' => ['auth','role:editor']], function(){
+    Route::get('editor/posts', function(){
+        return view('editor.posts');
+    });
+});
