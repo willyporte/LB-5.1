@@ -21,5 +21,5 @@ return [
     'register_title' => 'Registrate',
     'register_button' => 'Envia tus datos',
     'login_button' => 'Ingresa'
-
+    
 ];

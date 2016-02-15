@@ -10,6 +10,6 @@ return array(
     'register_button' => '¡Regístrate!',
     'remember'        => 'Recuérdame',
     'forgot_link'     => '¿Olvidaste tu contraseña?',
-    'throttle'        => 'Demasiados intentos fallidos por favor intente de nuevo en :minutes minutos'
+    'throttle'        => 'Demasiados intentos fallidos por favor intente de nuevo en :seconds segundos'
 
 );

@@ -27,6 +27,8 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     protected $username = 'nickname';
+    protected $maxLoginAttempts = 3;
+    protected $lockoutTime = 60; // seconds
 
     /**
      * Create a new authentication controller instance.
