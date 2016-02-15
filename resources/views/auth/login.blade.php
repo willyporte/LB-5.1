@@ -15,10 +15,10 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label">@lang('validation.attributes.nickname')</label>
+                                <label class="col-md-4 control-label">@lang('validation.attributes.email')</label>
 
                                 <div class="col-md-6">
-                                    <input name="nickname" type="text" value="{{ old('nickname') }}" class="form-control">
+                                    <input name="email" type="email" value="{{ old('email') }}" class="form-control">
                                 </div>
                             </div>
 

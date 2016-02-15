@@ -26,7 +26,7 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    protected $username = 'nickname';
+    protected $username = 'email'; // or 'nickname';
     protected $maxLoginAttempts = 3;
     protected $lockoutTime = 60; // seconds
 
@@ -151,7 +151,8 @@ class AuthController extends Controller
     protected function getCredentials(Request $request)
     {
         return [
-            'nickname' => $request->get('nickname'),
+            //'nickname' => $request->get('nickname'),
+            'email' => $request->get('email'),
             'password' => $request->get('password'),
             //'registration_token' => null,
             /*
